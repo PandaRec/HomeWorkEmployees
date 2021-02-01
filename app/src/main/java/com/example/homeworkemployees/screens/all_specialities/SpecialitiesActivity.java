@@ -6,16 +6,21 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.example.homeworkemployees.R;
 import com.example.homeworkemployees.adapters.SpecialitiesAdapter;
 import com.example.homeworkemployees.pojo.Employee;
+import com.example.homeworkemployees.pojo.Specialty;
+import com.example.homeworkemployees.screens.employees_of_speciality.EmployeesOfSpecialityActivity;
 import com.example.homeworkemployees.screens.employees_of_speciality.EmployeesViewModel;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class SpecialitiesActivity extends AppCompatActivity {
     private RecyclerView recyclerViewSpecialities;
@@ -35,18 +40,14 @@ public class SpecialitiesActivity extends AppCompatActivity {
         recyclerViewSpecialities.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewSpecialities.setAdapter(adapter);
 
-        List<String> spec = new ArrayList<>();
-        spec.add("Manager");
-        spec.add("Developer");
 
-        adapter.setSpecialities(spec);
 
         viewModel.getEmployees().observe(this, new Observer<List<Employee>>() {
             @Override
             public void onChanged(List<Employee> employees) {
-                for(Employee employee:employees){
-                    Log.i("my_res",employee.getFName());
-                }
+                List<String> specialities = new ArrayList<>(viewModel.getAllSpecialities(employees));
+                adapter.setSpecialities(specialities);
+
             }
         });
 
@@ -54,6 +55,15 @@ public class SpecialitiesActivity extends AppCompatActivity {
             @Override
             public void onChanged(Throwable throwable) {
                 Log.i("my_res",throwable.getMessage());
+            }
+        });
+
+        adapter.setOnSpecialityClickListener(new SpecialitiesAdapter.OnSpecialityClickListener() {
+            @Override
+            public void onSpecialityClick(int adapterPosition) {
+                Intent intent = new Intent(SpecialitiesActivity.this, EmployeesOfSpecialityActivity.class);
+                intent.putExtra("speciality",adapter.getSpecialities().get(adapterPosition));
+                startActivity(intent);
             }
         });
 

@@ -16,6 +16,7 @@ import java.util.List;
 
 public class SpecialitiesAdapter extends RecyclerView.Adapter<SpecialitiesAdapter.SpecialitiesViewHolder> {
     private List<String> specialities;
+    private OnSpecialityClickListener onSpecialityClickListener;
 
     public List<String> getSpecialities() {
         return specialities;
@@ -28,6 +29,14 @@ public class SpecialitiesAdapter extends RecyclerView.Adapter<SpecialitiesAdapte
 
     public SpecialitiesAdapter() {
         this.specialities = new ArrayList<>();
+    }
+
+    public interface OnSpecialityClickListener{
+        void onSpecialityClick(int adapterPosition);
+    }
+
+    public void setOnSpecialityClickListener(OnSpecialityClickListener onSpecialityClickListener) {
+        this.onSpecialityClickListener = onSpecialityClickListener;
     }
 
     @NonNull
@@ -47,11 +56,20 @@ public class SpecialitiesAdapter extends RecyclerView.Adapter<SpecialitiesAdapte
         return specialities.size();
     }
 
-    public static class SpecialitiesViewHolder extends RecyclerView.ViewHolder{
+    public class SpecialitiesViewHolder extends RecyclerView.ViewHolder{
         private TextView textViewSpeciality;
         public SpecialitiesViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewSpeciality = itemView.findViewById(R.id.textViewSpeciality);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(onSpecialityClickListener!=null){
+                        onSpecialityClickListener.onSpecialityClick(getAdapterPosition());
+                    }
+                }
+            });
+
         }
     }
 }

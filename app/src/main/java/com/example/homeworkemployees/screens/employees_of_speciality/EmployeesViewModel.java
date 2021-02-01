@@ -14,8 +14,12 @@ import com.example.homeworkemployees.api.ApiService;
 import com.example.homeworkemployees.data.AppDatabase;
 import com.example.homeworkemployees.pojo.Employee;
 import com.example.homeworkemployees.pojo.MyResponse;
+import com.example.homeworkemployees.pojo.Specialty;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -73,6 +77,16 @@ public class EmployeesViewModel extends AndroidViewModel {
                     }
                 });
         compositeDisposable.add(disposable);
+    }
+
+    public Set<String> getAllSpecialities(List<Employee> employees){
+        Set<String> specialities = new LinkedHashSet<>();
+        for(Employee employee:employees){
+            for(Specialty s:employee.getSpecialty()){
+                specialities.add(s.getName());
+            }
+        }
+        return specialities;
     }
 
     private static class InsertEmployeeTask extends AsyncTask<List<Employee>,Void,Void>{
