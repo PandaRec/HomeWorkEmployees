@@ -48,6 +48,7 @@ public class SpecialitiesActivity extends AppCompatActivity {
         viewModel.getEmployees().observe(this, new Observer<List<Employee>>() {
             @Override
             public void onChanged(List<Employee> employees) {
+                Log.i("my_size",String.format("%s",employees.size()));
                 List<String> specialities = new ArrayList<>(viewModel.getAllSpecialities(employees));
                 adapter.setSpecialities(specialities);
 

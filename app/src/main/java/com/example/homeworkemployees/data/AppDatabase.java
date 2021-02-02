@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.homeworkemployees.pojo.Employee;
 
-@Database(entities = {Employee.class},version = 1,exportSchema = false)
+@Database(entities = {Employee.class},version = 2,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase database;
     private static final Object LOCK = new Object();

@@ -6,4 +6,67 @@
     android:layout_height="match_parent"
     tools:context=".screens.employee.EmployeeActivity">
 
+    <com.makeramen.roundedimageview.RoundedImageView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="8dp"
+        android:src="@drawable/abcd"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:riv_border_color="@color/black"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/imageViewPerson"
+        />
+    <TextView
+        android:id="@+id/textViewNameEmployee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintStart_toEndOf="@id/imageViewPerson"
+        app:layout_constraintTop_toTopOf="@id/imageViewPerson"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewPerson"
+        tools:text="Name + Last Name"
+        />
+
+    <ImageView
+
+        android:id="@+id/imageViewEmployeeBirthdayIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewPerson"
+        app:srcCompat="@drawable/no_avatar_icon2" />
+    <TextView
+        android:id="@+id/textViewBirthdayEmployee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintStart_toEndOf="@id/imageViewEmployeeBirthdayIcon"
+        app:layout_constraintTop_toTopOf="@id/imageViewEmployeeBirthdayIcon"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewEmployeeBirthdayIcon"
+        tools:text="Birthday"
+        />
+
+    <ImageView
+
+        android:id="@+id/imageViewEmployeeSpecialityIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewEmployeeBirthdayIcon"
+        app:srcCompat="@drawable/no_avatar_icon2" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintStart_toEndOf="@id/imageViewEmployeeSpecialityIcon"
+        app:layout_constraintTop_toTopOf="@id/imageViewEmployeeSpecialityIcon"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewEmployeeSpecialityIcon"
+        tools:text="Speciality"
+        />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -119,6 +119,8 @@ public class EmployeesViewModel extends AndroidViewModel {
         return resultEmployees;
     }
 
+
+
     @Override
     protected void onCleared() {
         if(compositeDisposable!=null){

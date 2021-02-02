@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import com.example.homeworkemployees.adapters.EmployeesAdapter;
 import com.example.homeworkemployees.pojo.Employee;
 import com.example.homeworkemployees.screens.all_specialities.SpecialitiesActivity;
 import com.example.homeworkemployees.screens.employee.EmployeeActivity;
+import com.google.gson.Gson;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -76,7 +78,8 @@ public class EmployeesOfSpecialityActivity extends AppCompatActivity {
             @Override
             public void onEmployeeClick(int adapterPosition) {
                 Intent intent = new Intent(EmployeesOfSpecialityActivity.this, EmployeeActivity.class);
-                intent.putExtra("id",adapterPosition);
+                //intent.putExtra("id",adapter.getEmployees().get(0).getId());
+                intent.putExtra("employee", new Gson().toJson(adapter.getEmployees().get(adapterPosition)));
                 startActivity(intent);
             }
         });
