@@ -78,6 +78,7 @@ public class EmployeesOfSpecialityActivity extends AppCompatActivity {
             @Override
             public void onEmployeeClick(int adapterPosition) {
                 Intent intent = new Intent(EmployeesOfSpecialityActivity.this, EmployeeActivity.class);
+                intent.putExtra("speciality",currentSpeciality);
                 //intent.putExtra("id",adapter.getEmployees().get(0).getId());
                 intent.putExtra("employee", new Gson().toJson(adapter.getEmployees().get(adapterPosition)));
                 startActivity(intent);
