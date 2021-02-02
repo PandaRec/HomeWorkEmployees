@@ -1,6 +1,7 @@
 package com.example.homeworkemployees.screens.all_specialities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,7 +33,9 @@ public class SpecialitiesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerViewSpecialities = findViewById(R.id.recyclerViewSpecialities);
-
+        if(getSupportActionBar()!=null) {
+            getSupportActionBar().hide();
+        }
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(EmployeesViewModel.class);
 
 

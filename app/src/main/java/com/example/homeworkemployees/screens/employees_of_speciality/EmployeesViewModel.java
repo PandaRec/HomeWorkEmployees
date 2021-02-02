@@ -107,6 +107,18 @@ public class EmployeesViewModel extends AndroidViewModel {
         }
     }
 
+    public List<Employee> sortEmployeesBySpeciality(List<Employee> employees,String speciality){
+        List<Employee> resultEmployees = new ArrayList<>();
+        for(Employee employee: employees){
+            for(Specialty s:employee.getSpecialty()){
+                if(s.getName().equals(speciality)){
+                    resultEmployees.add(employee);
+                }
+            }
+        }
+        return resultEmployees;
+    }
+
     @Override
     protected void onCleared() {
         if(compositeDisposable!=null){
