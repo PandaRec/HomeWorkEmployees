@@ -134,6 +134,7 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.Empl
             }
         }
         return date;
+
     }
 
     private String normalizeString(String str){
