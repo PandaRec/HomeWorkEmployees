@@ -19,7 +19,8 @@
         app:layout_constraintStart_toStartOf="parent"
         android:paddingBottom="8dp"
         android:src="@drawable/name"
-        android:adjustViewBounds="true"/>
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/description_name_icon"/>
     <TextView
         android:id="@+id/textViewFirstName"
         android:layout_width="0dp"
@@ -42,6 +43,7 @@
         android:src="@drawable/last_name"
         android:paddingBottom="8dp"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/description_last_name_icon"
         />
 
     <TextView
@@ -65,6 +67,7 @@
         android:src="@drawable/age"
         android:paddingBottom="8dp"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/description_age_icon"
         />
 
     <TextView

@@ -55,7 +55,7 @@ public class EmployeeActivity extends AppCompatActivity {
             speciality = intent.getStringExtra("speciality");
         }
 
-        textViewName.setText(String.format("%s %s",currentEmployee.getFName(),currentEmployee.getFName()));
+        textViewName.setText(String.format("%s %s",currentEmployee.getFName(),currentEmployee.getLName()));
         textViewBirthday.setText(currentEmployee.getBirthday());
         textViewSpeciality.setText(speciality);
 

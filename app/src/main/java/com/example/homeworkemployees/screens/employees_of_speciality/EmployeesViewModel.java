@@ -16,7 +16,12 @@ import com.example.homeworkemployees.pojo.Employee;
 import com.example.homeworkemployees.pojo.MyResponse;
 import com.example.homeworkemployees.pojo.Specialty;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -67,7 +72,7 @@ public class EmployeesViewModel extends AndroidViewModel {
                     @Override
                     public void accept(MyResponse myResponse) throws Exception {
                         deleteAllEmployees();
-                        insertEmployees(myResponse.getResponse());
+                        insertEmployees(normalizeResponse(myResponse.getResponse()));
 
                     }
                 }, new Consumer<Throwable>() {
@@ -117,6 +122,75 @@ public class EmployeesViewModel extends AndroidViewModel {
             }
         }
         return resultEmployees;
+    }
+
+    public static int getAge(String birthdayString)
+    {
+        Date birthday = stringToDate(birthdayString);
+        if(birthday==null)
+            return -1;
+        GregorianCalendar today = new GregorianCalendar();
+        GregorianCalendar bday = new GregorianCalendar();
+        GregorianCalendar bdayThisYear = new GregorianCalendar();
+
+        bday.setTime(birthday);
+        bdayThisYear.setTime(birthday);
+        bdayThisYear.set(Calendar.YEAR, today.get(Calendar.YEAR));
+
+        int age = today.get(Calendar.YEAR) - bday.get(Calendar.YEAR);
+
+        if(today.getTimeInMillis() < bdayThisYear.getTimeInMillis())
+            age--;
+
+        return age;
+    }
+    private static Date stringToDate(String string){
+        if(string==null){
+            return null;
+        }
+
+        String[] split = string.split("-");
+        Date date = null;
+
+        if(split[0].length()>2){
+            try {
+                date=new SimpleDateFormat("yyyy-MM-dd").parse(string);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }else {
+            try {
+                date=new SimpleDateFormat("dd-MM-yyyy").parse(string);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return date;
+
+    }
+
+    private static String normalizeString(String str){
+        return str.toLowerCase().substring(0, 1).toUpperCase() + str.toLowerCase().substring(1);
+    }
+
+    private static List<Employee> normalizeResponse(List<Employee> employeesResponse){
+        List<Employee> resultList = new ArrayList<>();
+        for(Employee e : employeesResponse){
+            Employee employee = new Employee();
+            employee.setAvatrUrl(e.getAvatrUrl());
+            employee.setFName(normalizeString(e.getFName()));
+            employee.setId(e.getId());
+            employee.setLName(normalizeString(e.getLName()));
+            employee.setSpecialty(e.getSpecialty());
+            if(e.getBirthday()!=null && !e.getBirthday().equals(""))
+                employee.setBirthday(new SimpleDateFormat("MM-dd-yyyy").format(stringToDate(e.getBirthday())));
+            else {
+                employee.setBirthday(null);
+            }
+            resultList.add(employee);
+        }
+        return resultList;
+
     }
 
 

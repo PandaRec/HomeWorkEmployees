@@ -54,8 +54,6 @@ public class EmployeesOfSpecialityActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent!=null && intent.hasExtra("speciality")){
             currentSpeciality = intent.getStringExtra("speciality");
-           // Toast.makeText(this, ""+intent.getStringExtra("speciality"), Toast.LENGTH_SHORT).show();
-            //getSupportActionBar().setTitle("работники по специальности "+intent.getStringExtra("speciality"));
             textViewCurrentSpeciality.setText(String.format("По цпециальности \"%s\"",currentSpeciality));
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -63,7 +61,6 @@ public class EmployeesOfSpecialityActivity extends AppCompatActivity {
         viewModel.getEmployees().observe(this, new Observer<List<Employee>>() {
             @Override
             public void onChanged(List<Employee> employees) {
-                //List<Employee> all = viewModel.sortEmployeesBySpeciality(employees,currentSpeciality);
                 adapter.setEmployees(viewModel.sortEmployeesBySpeciality(employees,currentSpeciality));
             }
         });
@@ -79,7 +76,6 @@ public class EmployeesOfSpecialityActivity extends AppCompatActivity {
             public void onEmployeeClick(int adapterPosition) {
                 Intent intent = new Intent(EmployeesOfSpecialityActivity.this, EmployeeActivity.class);
                 intent.putExtra("speciality",currentSpeciality);
-                //intent.putExtra("id",adapter.getEmployees().get(0).getId());
                 intent.putExtra("employee", new Gson().toJson(adapter.getEmployees().get(adapterPosition)));
                 startActivity(intent);
             }

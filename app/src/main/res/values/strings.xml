@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">HomeWorkEmployees</string>
+    <string name="description_specility_icon">значок специальности</string>
+    <string name="description_birthday_icon">значок дня рождения</string>
+    <string name="description_name_icon">иконка имени</string>
+    <string name="description_last_name_icon">икнонка фамилии</string>
+    <string name="description_age_icon">иконка возраста</string>
 </resources>

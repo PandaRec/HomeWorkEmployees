@@ -4,20 +4,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.util.StringUtil;
-
 import com.example.homeworkemployees.R;
 import com.example.homeworkemployees.pojo.Employee;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import com.example.homeworkemployees.screens.employees_of_speciality.EmployeesViewModel;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.EmployeeViewHolder> {
@@ -56,9 +48,9 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.Empl
     @Override
     public void onBindViewHolder(@NonNull EmployeeViewHolder holder, int position) {
     Employee employee = employees.get(position);
-    holder.textViewName.setText(normalizeString(employee.getFName()));
-    holder.textViewLastName.setText(normalizeString(employee.getLName()));
-    int age = getAge(employee.getBirthday());
+    holder.textViewName.setText(employee.getFName());
+    holder.textViewLastName.setText(employee.getLName());
+    int age = EmployeesViewModel.getAge(employee.getBirthday());
     if(age!=-1){
         holder.textViewAge.setText(String.format("%s",age));
     }else {
@@ -89,55 +81,5 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.Empl
                 }
             });
         }
-    }
-
-    private static int getAge(String birthdayString)
-    {
-        Date birthday = stringToDate(birthdayString);
-        if(birthday==null)
-            return -1;
-        GregorianCalendar today = new GregorianCalendar();
-        GregorianCalendar bday = new GregorianCalendar();
-        GregorianCalendar bdayThisYear = new GregorianCalendar();
-
-        bday.setTime(birthday);
-        bdayThisYear.setTime(birthday);
-        bdayThisYear.set(Calendar.YEAR, today.get(Calendar.YEAR));
-
-        int age = today.get(Calendar.YEAR) - bday.get(Calendar.YEAR);
-
-        if(today.getTimeInMillis() < bdayThisYear.getTimeInMillis())
-            age--;
-
-        return age;
-    }
-
-    private static Date stringToDate(String string){
-        if(string==null){
-            return null;
-        }
-
-        String[] split = string.split("-");
-        Date date = null;
-
-        if(split[0].length()>2){
-            try {
-                date=new SimpleDateFormat("yyyy-MM-dd").parse(string);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }else {
-            try {
-                date=new SimpleDateFormat("dd-MM-yyyy").parse(string);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-        return date;
-
-    }
-
-    private String normalizeString(String str){
-        return str.toLowerCase().substring(0, 1).toUpperCase() + str.toLowerCase().substring(1);
     }
 }

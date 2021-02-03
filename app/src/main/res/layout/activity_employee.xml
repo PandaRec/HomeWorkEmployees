@@ -11,10 +11,9 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="8dp"
         android:src="@drawable/abcd"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:riv_border_color="@color/black"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/imageViewPerson"
         />
     <TextView
@@ -23,6 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@id/imageViewPerson"
         app:layout_constraintTop_toTopOf="@id/imageViewPerson"
         app:layout_constraintBottom_toBottomOf="@id/imageViewPerson"
@@ -32,17 +33,20 @@
     <ImageView
 
         android:id="@+id/imageViewEmployeeBirthdayIcon"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageViewPerson"
-        app:srcCompat="@drawable/birthday" />
+        app:srcCompat="@drawable/birthday"
+        android:contentDescription="@string/description_birthday_icon"/>
     <TextView
         android:id="@+id/textViewBirthdayEmployee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@id/imageViewEmployeeBirthdayIcon"
         app:layout_constraintTop_toTopOf="@id/imageViewEmployeeBirthdayIcon"
         app:layout_constraintBottom_toBottomOf="@id/imageViewEmployeeBirthdayIcon"
@@ -52,17 +56,20 @@
     <ImageView
 
         android:id="@+id/imageViewEmployeeSpecialityIcon"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageViewEmployeeBirthdayIcon"
-        app:srcCompat="@drawable/speciality" />
+        app:srcCompat="@drawable/speciality"
+        android:contentDescription="@string/description_specility_icon"/>
     <TextView
         android:id="@+id/textViewEmployeeSpeciality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@id/imageViewEmployeeSpecialityIcon"
         app:layout_constraintTop_toTopOf="@id/imageViewEmployeeSpecialityIcon"
         app:layout_constraintBottom_toBottomOf="@id/imageViewEmployeeSpecialityIcon"
